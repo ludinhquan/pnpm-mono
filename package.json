@@ -1,0 +1,16 @@
+{
+  "name": "pnpm-mono",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "ludinhquan@gmail.com",
+  "license": "ISC",
+  "scripts": {
+    "dev:client": "nx dev @app/client",
+    "dev:server": "nx dev @app/server"
+  },
+  "devDependencies": {
+    "nx": "^17.0.2"
+  }
+}

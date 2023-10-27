@@ -1,0 +1,23 @@
+FROM node:20.9.0-alpine
+
+WORKDIR /app
+
+ARG GIT_COMMIT
+ENV GIT_COMMIT=$GIT_COMMIT
+
+RUN npm install -g pnpm
+
+COPY nx.json package.json pnpm-lock.yaml pnpm-workspace.yaml tsconfig.json .
+COPY packages/core/package.json packages/core/package.json
+COPY apps/client/package.json apps/client/package.json
+
+RUN pnpm install
+
+COPY packages/core packages/core
+COPY apps/client apps/client
+
+RUN npx nx build @app/client
+
+EXPOSE 3000
+
+CMD ["pnpm", "client", "preview"]
